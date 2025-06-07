@@ -1,0 +1,23 @@
+{
+    "environment": "development",
+    "database": {
+        "host": "localhost",
+        "port": 5432,
+        "name": "affiliate_matrix",
+        "user": "postgres",
+        "password": "postgres"
+    },
+    "vault": {
+        "host": "localhost",
+        "port": 8200
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "affiliate_matrix.log"
+    },
+    "system": {
+        "discovery_interval": 3600,
+        "funnel_interval": 1800,
+        "operation_interval": 900
+    }
+}

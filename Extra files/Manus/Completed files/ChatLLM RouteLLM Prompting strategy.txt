@@ -1,0 +1,144 @@
+Below is a structured, high‑leverage prompting recipe designed to coax maximal production output out of ChatLLM’s RouteLLM routing—while slashing per‑prompt spend—and to squeeze every bit of “free” functionality (code execution, DeepResearch, Tasks, etc.) out of your $10/month seat.
+
+In short: (1) tag each request by complexity so RouteLLM sends trivial work to cheap local models and only invokes GPT‑4‑class when you really need it; (2) drive all built‑in tools via explicit “Tool” sections in your prompt; (3) minimize back‑and‑forth by demanding self‑contained, machine‑friendly outputs (e.g. tight JSON, token caps, no chain‑of‑thought); and (4) batch or chain subtasks in one hit so you pay once instead of ten times .
+
+1. How RouteLLM Saves You Money
+
+RouteLLM dynamically routes “easy” queries to small, cheap models (e.g. Mixtral‑8×7B) and only falls back to GPT‑4‑class when complexity demands it, recovering up to ~90% of GPT‑4 quality at ~20% of the cost . By tagging tasks by “Complexity,” you let RouteLLM do its magic automatically—no manual model swaps needed .
+
+2. Core Prompting Tactics for Cost‑Efficiency
+
+Be Ultra‑Clear & Structured
+
+Clarity & Specificity: Detailed requests reduce retries. Always state exactly what you need up‑front .
+
+Context Blocks: Supply minimal but sufficient context (“Project: X; Data: Y”) so the model needn’t ask follow‑ups .
+
+Token Caps: Enforce Response ≤ N tokens to bound spend—every token on the output side still costs. You can reference per‑token cost: GPT‑4 is ~$24.7/million tokens vs. Mixtral’s $0.24/million .
+
+
+Complexity Tagging
+
+Difficulty Labels: At the top of every prompt, include a field like Complexity: Low/Medium/High. RouteLLM’s NLP‑based router uses precisely this to decide which model tier to invoke .
+
+Pre‑Routing Hints: For chain‑of‑thought or heavy analysis, mark Complexity: High; for simple lookups or formatting, use Low to force the weak model.
+
+
+Demand Machine‑Friendly Output
+
+Strict JSON or CSV: Define an exact schema. This cuts tokens (no filler) and avoids follow‑up re‑requests for structure .
+
+“No Explanations”: Append “Respond with only the final JSON; do not include your reasoning” to strip chain‑of‑thought .
+
+
+Batch & Chain Subtasks
+
+Multi‑Step in One Prompt: Instead of “Step 1… then I’ll ask Step 2,” enumerate all steps in your prompt. This cuts context‑switch overhead and avoids multiple model calls .
+
+
+3. Leveraging ChatLLM’s Free Actions
+
+ChatLLM bundles—at no extra compute cost—these built‑in “actions” you should call explicitly in your prompts:
+
+Code Execution (CodeLLM):
+
+> “Tool: RunCode – execute the following Python snippet and return only the printed output.” 
+
+
+
+DeepResearch (Web Search):
+
+> “Tool: DeepResearch('latest trends in renewable energy') – fetch and summarize top‑3 sources.” 
+
+
+
+Task Scheduling (ChatLLM Tasks):
+
+> “Tool: ScheduleTask('daily_stock_fetch', cron='0 9 * * *') – store results in variable stocks.” 
+
+
+
+AI Agents (AppLLM):
+
+> “Tool: InvokeAgent('data-cleaner', input=data.csv) – return cleaned_data.csv.” 
+
+
+
+
+By encoding these calls in your prompt’s “Tools & Actions” section, you get pre‑built orchestration—without extra API hits.
+
+4. Genius‐Level Prompting Template
+
+Use this template as a blueprint—just fill in the <…> fields:
+
+## Task Overview:
+**Objective:** <One‑line goal>  
+**Complexity:** [Low | Medium | High]  
+**Context:** <Brief background or relevant data>  
+
+## Tools & Actions:
+- **RunCode:**
+
+> > > function: RunCode code: | <your Python/JS snippet here>
+
+
+
+
+
+
+
+- **DeepResearch:**
+
+> > > function: DeepResearch query: "<your search query here>"
+
+
+
+
+
+
+
+- **ScheduleTask:**
+
+> > > function: ScheduleTask name: "<task_name>" cron: "<cron_expression>"
+
+
+
+
+
+
+
+## Constraints:
+- **Model Routing:** auto (let RouteLLM choose)  
+- **Token Limit:** ≤ <N> tokens  
+- **Cost Threshold:** ensure <X>% of calls hit the weak model  
+- **Output Format:** JSON  
+
+## Steps:
+1. <Step 1: e.g. analyze context & decide approach>  
+2. <Step 2: e.g. run code snippet & capture output>  
+3. <Step 3: e.g. web‑search & synthesize>  
+
+---
+
+**Output Schema (only JSON):**
+```json
+{
+"result": "<final_answer>",
+"execution_logs": {
+  "code_output": "<stdout>",
+  "search_summary": "<bulleted list>"
+},
+"models_used": {
+  "analysis": "<weak|strong>",
+  "generation": "<weak|strong>"
+}
+}
+
+**Why this works:**  
+- **Complexity tag** lets RouteLLM minimize expensive calls 14.  
+- **Tools & Actions** tap every built‑in at no compute surcharge 15.  
+- **Token & cost caps** bound spend per prompt 16.  
+- **Tight JSON** eliminates wasteful filler 17.  
+- **One‑shot multi‑step** prevents iterative back‑and‑forth 18.  
+
+Implement this template across your workflows to squeeze maximum penny‑per‑penny value from your $10/month ChatLLM subscription—by offloading 80–90% of simple work to cheap models, while still tapping GPT‑4 quality when it truly matters.

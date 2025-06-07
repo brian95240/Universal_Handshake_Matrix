@@ -1,0 +1,48 @@
+"""
+Requirements file for the Affiliate Matrix backend.
+
+This file lists all Python dependencies required for the backend.
+"""
+
+# FastAPI framework and dependencies
+fastapi==0.95.1
+uvicorn==0.22.0
+pydantic==1.10.7
+starlette==0.27.0
+python-multipart==0.0.6
+python-dotenv==1.0.0
+
+# Database
+sqlalchemy==2.0.12
+alembic==1.10.4
+psycopg2-binary==2.9.6
+asyncpg==0.27.0
+
+# Security
+python-jose==3.3.0
+passlib==1.7.4
+bcrypt==4.0.1
+
+# Utilities
+httpx==0.24.0
+tenacity==8.2.2
+pyyaml==6.0
+ujson==5.7.0
+
+# Monitoring and telemetry
+prometheus-client==0.16.0
+opentelemetry-api==1.16.0
+opentelemetry-sdk==1.16.0
+opentelemetry-instrumentation-fastapi==0.37b0
+
+# Testing
+pytest==7.3.1
+pytest-asyncio==0.21.0
+pytest-cov==4.1.0
+httpx==0.24.0
+
+# Development
+black==23.3.0
+isort==5.12.0
+mypy==1.2.0
+flake8==6.0.0

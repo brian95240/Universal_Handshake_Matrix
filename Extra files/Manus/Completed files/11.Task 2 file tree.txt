@@ -1,0 +1,45 @@
+├── docker/
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│   ├── docker-compose.prod.yml
+│   └── nginx.conf
+├── backend/
+│   ├── services/
+│   │   ├── connection_service.py
+│   │   └── program_service.py
+│   ├── utils/
+│   │   ├── error_handlers.py
+│   │   └── exceptions.py
+│   ├── config.py
+│   └── telemetry.py
+├── frontend/
+│   ├── components/
+│   │   ├── ProgramIndexView.vue
+│   │   ├── DataTable.vue
+│   │   └── BaseCard.vue
+│   └── public/
+│       ├── index.html
+│       └── styles.css
+├── tests/
+│   ├── test_connection_service.py
+│   ├── test_program_service.py
+│   └── conftest.py
+├── docs/
+│   ├── api.md
+│   ├── docker.md
+│   ├── implementation.md
+│   ├── implementation_plan.md
+│   ├── integration-guide.html
+│   ├── test-docs.html
+│   └── api-docs.html
+├── signals/
+│   ├── signal-2025-04-19-20-25-03-423.ts
+│   ├── signal-2025-04-19-20-24-48-087.ts
+│   └── signal-2025-04-19-20-24-26-156.ts
+├── diagrams/
+│   ├── data-flow.svg
+│   └── data-flow.dot
+├── .env
+├── package.json
+├── requirements.txt
+├── integration_verify.sh

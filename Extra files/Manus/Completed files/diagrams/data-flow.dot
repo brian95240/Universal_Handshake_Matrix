@@ -1,0 +1,39 @@
+digraph G {
+  rankdir=LR;
+  node [shape=box, style=filled, fillcolor=lightblue, fontname="Arial"];
+  edge [fontname="Arial", fontsize=10];
+
+  subgraph cluster_frontend {
+    label="Frontend (Vue.js)";
+    style=filled;
+    color=lightgrey;
+    
+    UI [label="Vue Components"];
+    Composables [label="Vue Composables"];
+    Stores [label="Pinia Stores"];
+    
+    UI -> Composables [label="User Actions"];
+    Composables -> Stores [label="Update State"];
+    Stores -> UI [label="Reactive Updates"];
+  }
+  
+  subgraph cluster_backend {
+    label="Backend (FastAPI)";
+    style=filled;
+    color=lightgrey;
+    
+    API [label="API Endpoints"];
+    Models [label="Pydantic Models"];
+    Services [label="Business Logic"];
+    DB [label="Database"];
+    
+    API -> Models [label="Validate Data"];
+    Models -> Services [label="Process Data"];
+    Services -> DB [label="CRUD Operations"];
+    DB -> Services [label="Return Data"];
+    Services -> API [label="Response Data"];
+  }
+  
+  Stores -> API [label="HTTP Requests"];
+  API -> Stores [label="JSON Responses"];
+}

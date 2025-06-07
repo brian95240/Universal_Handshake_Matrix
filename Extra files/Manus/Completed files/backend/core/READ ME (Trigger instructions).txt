@@ -1,0 +1,48 @@
+# Implementing Trigger Loading and Action Execution
+
+This document provides guidance on replacing the stub implementations of `load_triggers()` and `execute_trigger_actions(actions)` within `backend/core/trigger_system.py`. These functions are critical for making the trigger automation system functional.
+
+## 1. Implementing `load_triggers()`
+
+The `load_triggers()` function is responsible for retrieving the active trigger configurations that the system will evaluate against incoming events.
+
+**Your Task:** Replace the placeholder `return []` and the warning log with code that loads trigger configurations from your chosen storage mechanism.
+
+**Considerations:**
+
+* **Storage Mechanism:** Where will your trigger configurations be stored?
+    * **Database:** This is a common approach for dynamic configurations that may change frequently. You would need to implement database queries using your project's Data Access Layer.
+    * **Configuration File(s):** For simpler setups, triggers could be defined in a static file (e.g., JSON or YAML). You would need to read and parse this file.
+    * **Configuration Service:** In a microservices architecture, a dedicated configuration service might provide this data via an API.
+* **Data Structure:** The loaded triggers **must** conform to the Automation Trigger Schema that was previously defined. Each item in the list returned by `load_triggers` should match the object structure defined in the `triggers.items` part of the schema.
+* **Caching:** To improve performance, consider implementing a caching layer for trigger configurations, especially if loading is resource-intensive. Refer to the existing caching implementation guidance (Step 5).
+* **Error Handling:** Implement robust error handling in case trigger configurations cannot be loaded. The current stub logs a warning, but you might need a more sophisticated approach depending on your requirements.
+
+**Example Snippet (Illustrative - adapt to your storage):**
+
+```python
+# Inside backend/core/trigger_system.py
+
+# Example using a hypothetical database service 'config_db'
+# from backend.data_access.config_repository import config_repository
+
+def load_triggers() -> List[Dict[str, Any]]:
+    """Loads active trigger configurations from storage (e.g., database)."""
+    try:
+        # Replace with actual loading logic
+        # For DB: triggers = config_repository.get_active_triggers()
+        # For File:
+        # with open('config/triggers.json', 'r') as f:
+        #     triggers_data = json.load(f)
+        #     triggers = triggers_data.get('triggers', []) # Assuming schema structure
+        triggers = [] # Your actual loading code goes here
+
+        logger.info(f"Loaded {len(triggers)} active triggers.")
+        # Optional: Add schema validation here to ensure loaded data is correct
+        # validate_schema(triggers, trigger_schema) # Assuming a validation utility
+
+        return triggers
+    except Exception as e:
+        logger.error(f"Failed to load triggers: {e}", exc_info=True)
+        # Depending on requirements, you might re-raise, return empty list, or load from a fallback
+        return [] # Returning empty list means no triggers will fire

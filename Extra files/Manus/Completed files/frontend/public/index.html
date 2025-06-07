@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiliate Matrix Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-diagram-3"></i> Affiliate Matrix
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#overview">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#architecture">Architecture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#components">Components</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#documentation">Documentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#download">Download</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-dark text-white text-center py-5">
+        <div class="container">
+            <h1 class="display-4">Affiliate Matrix</h1>
+            <p class="lead">A comprehensive automated affiliate marketing system</p>
+            <a href="#download" class="btn btn-primary btn-lg mt-3">
+                <i class="bi bi-download"></i> Download Project
+            </a>
+        </div>
+    </header>
+
+    <section id="overview" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="text-center mb-4">Project Overview</h2>
+                    <p>
+                        The Affiliate Matrix is a comprehensive automated affiliate marketing system designed to streamline the discovery, 
+                        management, and optimization of affiliate programs. The system consists of a backend API built with Python FastAPI 
+                        and a frontend application built with Vue.js.
+                    </p>
+                    <p>
+                        This project provides a solid foundation with well-defined data structures, API contracts, and integration points 
+                        between frontend and backend components. It's designed to be extensible and maintainable, following modern 
+                        development practices.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">System Architecture</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title">Backend (FastAPI)</h3>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle-fill text-success"></i> RESTful API with Python FastAPI</li>
+                                <li><i class="bi bi-check-circle-fill text-success"></i> Pydantic models for data validation</li>
+                                <li><i class="bi bi-check-circle-fill text-success"></i> Modular router organization</li>
+                                <li><i class="bi bi-check-circle-fill text-success"></i> OpenAPI specification</li>
+                                <li><i class="bi bi-check-circle-fill text-success"></i> Comprehensive test cases</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title">Frontend (Vue.js)</h3>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle-fill text-success"></i> Vue 3 with Composition API</li>
+                                <li><i class="bi bi-check-circle-fill text-success"></i> TypeScript for type safety</li>
+                                <li><i class="bi bi-check-circle-fill text-success"></i> Pinia for state management</li>
+                                <li><i class="bi bi-check-circle-fill text-success"></i> Reusable composable functions</li>
+                                <li><i class="bi bi-check-circle-fill text-success"></i> Comprehensive test cases</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-lg-10 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Data Flow</h3>
+                            <p>The diagram below illustrates the data flow between frontend and backend components:</p>
+                            <div class="text-center">
+                                <img src="data-flow.svg" alt="Data Flow Diagram" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="components" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Key Components</h2>
+            
+            <div class="row mb-4">
+                <div class="col-lg-10 mx-auto">
+                    <div class="accordion" id="componentsAccordion">
+                        <!-- Programs Module -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#programsCollapse">
+                                    Programs Module
+                                </button>
+                            </h2>
+                            <div id="programsCollapse" class="accordion-collapse collapse show" data-bs-parent="#componentsAccordion">
+                                <div class="accordion-body">
+                                    <p>Manages affiliate programs with features for creating, updating, and analyzing program performance.</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>Backend</h5>
+                                            <ul>
+                                                <li>CRUD operations for programs</li>
+                                                <li>Performance metrics calculation</li>
+                                                <li>Filtering and pagination</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5>Frontend</h5>
+                                            <ul>
+                                                <li>usePrograms composable</li>
+                                                <li>programsStore for state management</li>
+                                                <li>Program visualization components</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Connections Module -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#connectionsCollapse">
+                                    Connections Module
+                                </button>
+                            </h2>
+                            <div id="connectionsCollapse" class="accordion-collapse collapse" data-bs-parent="#componentsAccordion">
+                                <div class="accordion-body">
+                                    <p>Manages external API connections for data synchronization with affiliate networks.</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>Backend</h5>
+                                            <ul>
+                                                <li>Connection management</li>
+                                                <li>Synchronization operations</li>
+                                                <li>Connection testing</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5>Frontend</h5>
+                                            <ul>
+                                                <li>useConnections composable</li>
+                                                <li>connectionsStore for state management</li>
+                                                <li>Connection status monitoring</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Discovery Module -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#discoveryCollapse">
+                                    Discovery Module
+                                </button>
+                            </h2>
+                            <div id="discoveryCollapse" class="accordion-collapse collapse" data-bs-parent="#componentsAccordion">
+                                <div class="accordion-body">
+                                    <p>Automates the discovery of new affiliate programs through web scraping and analysis.</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>Backend</h5>
+                                            <ul>
+                                                <li>Discovery operations</li>
+                                                <li>Result processing</li>
+                                                <li>Program matching algorithms</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5>Frontend</h5>
+                                            <ul>
+                                                <li>useDiscovery composable</li>
+                                                <li>discoveryStore for state management</li>
+                                                <li>Discovery result visualization</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- System Module -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#systemCollapse">
+                                    System Module
+                                </button>
+                            </h2>
+                            <div id="systemCollapse" class="accordion-collapse collapse" data-bs-parent="#componentsAccordion">
+                                <div class="accordion-body">
+                                    <p>Provides system monitoring, logging, and performance metrics.</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>Backend</h5>
+                                            <ul>
+                                                <li>System metrics collection</li>
+                                                <li>Log management</li>
+                                                <li>Status reporting</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5>Frontend</h5>
+                                            <ul>
+                                                <li>useSystem composable</li>
+                                                <li>systemStore for state management</li>
+                                                <li>Dashboard visualization</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Budgets Module -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#budgetsCollapse">
+                                    Budgets Module
+                                </button>
+                            </h2>
+                            <div id="budgetsCollapse" class="accordion-collapse collapse" data-bs-parent="#componentsAccordion">
+                                <div class="accordion-body">
+                                    <p>Manages marketing budgets and allocations across affiliate programs.</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>Backend</h5>
+                                            <ul>
+                                                <li>Budget management</li>
+                                                <li>Allocation tracking</li>
+                                                <li>Performance reporting</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-6
+(Content truncated due to size limit. Use line ranges to read in chunks)

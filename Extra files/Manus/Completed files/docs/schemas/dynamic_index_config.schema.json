@@ -1,0 +1,65 @@
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "indexes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the index"
+          },
+          "collection": {
+            "type": "string",
+            "description": "Collection/table to index"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string",
+                  "description": "Field name to index"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": ["ascending", "descending", "text", "hashed"],
+                  "description": "Type of index"
+                },
+                "weight": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Text index weight (optional)"
+                }
+              },
+              "required": ["field", "type"]
+            }
+          },
+          "options": {
+            "type": "object",
+            "properties": {
+              "unique": {
+                "type": "boolean",
+                "default": false
+              },
+              "sparse": {
+                "type": "boolean",
+                "default": false
+              },
+              "expireAfterSeconds": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        "required": ["name", "collection", "fields"]
+      }
+    }
+  },
+  "required": ["indexes"]
+}

@@ -1,0 +1,67 @@
+# Inside backend/core/trigger_system.py
+
+# Example imports (replace with your actual service imports)
+# from backend.services.notification_service import notification_service
+# from backend.core.budgeting_system import adjust_campaign_budget
+# from backend.core.master_index import update_index_entry
+# from backend.core.google_dorking import run_dorking_query
+
+async def execute_trigger_actions(actions: List[Dict[str, Any]]):
+    """Executes the defined actions for a triggered event."""
+    if not actions:
+        logger.debug("No actions to execute for this trigger.")
+        return
+
+    logger.info(f"Executing {len(actions)} trigger action(s).")
+
+    for action in actions:
+        action_type = action.get('type')
+        params = action.get('params', {})
+
+        if not action_type:
+             logger.warning(f"Skipping action with no type defined: {action}")
+             continue
+
+        try:
+            logger.debug(f"Executing action type: {action_type}")
+            if action_type == "notify":
+                # Example: call a notification service
+                # await notification_service.send_notification(params.get("message"), recipients=params.get("recipients"))
+                logger.info(f"Notification action requested with params: {params}")
+                pass # Replace with actual notification call
+            elif action_type == "adjust_budget":
+                # Example: call the budgeting system
+                # campaign_id = params.get("campaign_id")
+                # adjustment = params.get("adjustment")
+                # if campaign_id and adjustment is not None:
+                #     await adjust_campaign_budget(campaign_id, adjustment)
+                # else:
+                #     logger.warning(f"Invalid params for adjust_budget action: {params}")
+                logger.info(f"Adjust budget action requested with params: {params}")
+                pass # Replace with actual budget adjustment call
+            elif action_type == "update_index":
+                 # Example: interact with the indexing system
+                 # entry_id = params.get("entry_id")
+                 # updates = params.get("updates")
+                 # if entry_id and updates:
+                 #     await update_index_entry(entry_id, updates)
+                 # else:
+                 #     logger.warning(f"Invalid params for update_index action: {params}")
+                logger.info(f"Update index action requested with params: {params}")
+                pass # Replace with actual index update call
+            elif action_type == "run_dorking":
+                 # Example: trigger a dorking query
+                 # query_template = params.get("query_template")
+                 # if query_template:
+                 #    await run_dorking_query(query_template)
+                 # else:
+                 #    logger.warning(f"Invalid params for run_dorking action: {params}")
+                logger.info(f"Run dorking action requested with params: {params}")
+                pass # Replace with actual dorking trigger call
+            else:
+                logger.warning(f"Unsupported action type: {action_type}")
+
+        except Exception as e:
+            logger.error(f"Error executing action '{action_type}' with params {params}: {e}", exc_info=True)
+            # Decide if you need to handle errors per action or let one failure stop others
+

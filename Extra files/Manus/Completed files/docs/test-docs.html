@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Documentation - Affiliate Matrix</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="bi bi-diagram-3"></i> Affiliate Matrix
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#overview">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#architecture">Architecture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#components">Components</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../index.html#documentation">Documentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#download">Download</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <h1>Test Documentation</h1>
+            <p class="lead">Comprehensive test cases for backend and frontend components</p>
+        </div>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="sticky-top pt-4">
+                        <div class="list-group">
+                            <a href="#overview" class="list-group-item list-group-item-action">Testing Overview</a>
+                            <a href="#backend-tests" class="list-group-item list-group-item-action">Backend Tests</a>
+                            <a href="#frontend-tests" class="list-group-item list-group-item-action">Frontend Tests</a>
+                            <a href="#integration-tests" class="list-group-item list-group-item-action">Integration Tests</a>
+                            <a href="#running-tests" class="list-group-item list-group-item-action">Running Tests</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div id="overview" class="mb-5">
+                        <h2>Testing Overview</h2>
+                        <p>
+                            The Affiliate Matrix project includes comprehensive test cases for both backend and frontend components.
+                            These tests ensure that all components work correctly individually and together as a system.
+                        </p>
+                        <p>
+                            The testing strategy follows a pyramid approach:
+                        </p>
+                        <ul>
+                            <li><strong>Unit Tests:</strong> Test individual functions and components in isolation</li>
+                            <li><strong>Integration Tests:</strong> Test interactions between components</li>
+                            <li><strong>End-to-End Tests:</strong> Test complete user workflows</li>
+                        </ul>
+                    </div>
+
+                    <div id="backend-tests" class="mb-5">
+                        <h2>Backend Tests</h2>
+                        <p>
+                            Backend tests are implemented using pytest and the FastAPI TestClient. They cover all API endpoints
+                            and ensure that the backend behaves correctly under various conditions.
+                        </p>
+                        
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                Programs API Tests
+                            </div>
+                            <div class="card-body">
+                                <p>Tests for the Programs API endpoints:</p>
+                                <ul>
+                                    <li><code>test_list_programs</code>: Test retrieving a paginated list of programs</li>
+                                    <li><code>test_list_programs_with_filters</code>: Test retrieving programs with filters</li>
+                                    <li><code>test_create_program</code>: Test creating a new program</li>
+                                    <li><code>test_get_program</code>: Test retrieving a specific program</li>
+                                    <li><code>test_update_program</code>: Test updating an existing program</li>
+                                    <li><code>test_delete_program</code>: Test deleting a program</li>
+                                    <li><code>test_get_program_metrics</code>: Test retrieving metrics for a specific program</li>
+                                </ul>
+                                <p class="mt-3">Example Test:</p>
+<pre><code class="language-python">def test_create_program(self):
+    """Test creating a new program."""
+    program_data = {
+        "name": "Test Program",
+        "description": "Test description",
+        "url": "https://example.com",
+        "category": ["test"],
+        "commission": {
+            "type": "percentage",
+            "value": 10
+        },
+        "cookie_duration": 30,
+        "payment_frequency": "monthly",
+        "minimum_payout": 50,
+        "payment_methods": ["paypal"],
+        "status": "active",
+        "tags": ["test"],
+        "source": "manual"
+    }
+    response = client.post("/api/programs", json=program_data)
+    assert response.status_code == 201
+    data = response.json()
+    assert data["name"] == program_data["name"]
+    assert "id" in data</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                Connections API Tests
+                            </div>
+                            <div class="card-body">
+                                <p>Tests for the Connections API endpoints:</p>
+                                <ul>
+                                    <li><code>test_list_connections</code>: Test retrieving a paginated list of connections</li>
+                                    <li><code>test_list_connections_with_filters</code>: Test retrieving connections with filters</li>
+                                    <li><code>test_create_connection</code>: Test creating a new connection</li>
+                                    <li><code>test_get_connection</code>: Test retrieving a specific connection</li>
+                                    <li><code>test_update_connection</code>: Test updating an existing connection</li>
+                                    <li><code>test_delete_connection</code>: Test deleting a connection</li>
+                                    <li><code>test_sync_connection</code>: Test triggering synchronization for a connection</li>
+                                    <li><code>test_test_connection</code>: Test testing a connection</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                Discovery API Tests
+                            </div>
+                            <div class="card-body">
+                                <p>Tests for the Discovery API endpoints:</p>
+                                <ul>
+                                    <li><code>test_list_discovery_results</code>: Test retrieving a paginated list of discovery results</li>
+                                    <li><code>test_list_discovery_results_with_filters</code>: Test retrieving discovery results with filters</li>
+                                    <li><code>test_start_discovery</code>: Test starting a new discovery operation</li>
+                                    <li><code>test_get_discovery_result</code>: Test retrieving a specific discovery result</li>
+                                    <li><code>test_cancel_discovery</code>: Test cancelling an in-progress discovery operation</li>
+                                    <li><code>test_process_discovery_item</code>: Test processing a discovery item</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                System API Tests
+                            </div>
+                            <div class="card-body">
+                                <p>Tests for the System API endpoints:</p>
+                                <ul>
+                                    <li><code>test_get_system_metrics</code>: Test retrieving system metrics</li>
+                                    <li><code>test_get_system_metrics_with_period</code>: Test retrieving system metrics with a specific period</li>
+                                    <li><code>test_get_system_logs</code>: Test retrieving system logs</li>
+                                    <li><code>test_get_system_logs_with_filters</code>: Test retrieving system logs with filters</li>
+                                    <li><code>test_get_system_status</code>: Test retrieving system status</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                Budgets API Tests
+                            </div>
+                            <div class="card-body">
+                                <p>Tests for the Budgets API endpoints:</p>
+                                <ul>
+                                    <li><code>test_list_budgets</code>: Test retrieving a paginated list of budgets</li>
+                                    <li><code>test_list_budgets_with_filters</code>: Test retrieving budgets with filters</li>
+                                    <li><code>test_create_budget</code>: Test creating a new budget</li>
+                                    <li><code>test_get_budget</code>: Test retrieving a specific budget</li>
+                                    <li><code>test_update_budget</code>: Test updating an existing budget</li>
+                                    <li><code>test_delete_budget</code>: Test deleting a budget</li>
+                                    <li><code>test_update_budget_status</code>: Test updating the status of a budget</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                Automation API Tests
+                            </div>
+                            <div class="card-body">
+                                <p>Tests for the Automation API endpoints:</p>
+                                <ul>
+                                    <li><code>test_list_triggers</code>: Test retrieving a paginated list of automation triggers</li>
+                                    <li><code>test_list_triggers_with_filters</code>: Test retrieving automation triggers with filters</li>
+                                    <li><code>test_create_trigger</code>: Test creating a new automation trigger</li>
+                                    <li><code>test_get_trigger</code>: Test retrieving a specific automation trigger</li>
+                                    <li><code>test_update_trigger</code>: Test updating an existing automation trigger</li>
+                                    <li><code>test_delete_trigger</code>: Test deleting an automation trigger</li>
+                                    <li><code>test_toggle_trigger</code>: Test toggling an automation trigger</li>
+                                    <li><code>test_execute_trigger</code>: Test manually executing an automation trigger</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                Settings API Tests
+                            </div>
+                            <div class="card-body">
+                                <p>Tests for the Settings API endpoints:</p>
+                                <ul>
+                                    <li><code>test_get_settings</code>: Test retrieving user settings</li>
+                                    <li><code>test_update_settings</code>: Test updating user settings</li>
+                                    <li><code>test_update_partial_settings</code>: Test updating only specific settings fields</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="frontend-tests" class="mb-5">
+                        <h2>Frontend Tests</h2>
+                        <p>
+                            Frontend tests are implemented using Jest and Vue Test Utils. They cover all composables and stores
+                            and ensure that the frontend components interact correctly with the backend API.
+                        </p>
+                        
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                usePrograms Composable Tests
+                            </div>
+                            <div class="card-body">
+                                <p>Tests for the usePrograms composable:</p>
+                                <ul>
+                                    <li><code>fetchPrograms should call the API and update the store</code></li>
+                                    <li><code>fetchProgram should call the API and update the store</code></li>
+                                    <li><code>createProgram should call the API and update the store</code></li>
+                                    <li><code>updateProgram should call the API and update the store</code></li>
+                                    <li><code>deleteProgram should call the API and update the store</code></li>
+                                    <li><code>fetchProgramMetrics should call the API and update the store</code></li>
+                                    <li><code>should handle API errors correctly</code></li>
+                                </ul>
+                                <p class="mt-3">Example Test:</p>
+<pre><code class="language-javascript">test('fetchPrograms should call the API and update the store', async () => {
+  // Mock API response
+  const moc
+(Content truncated due to size limit. Use line ranges to read in chunks)

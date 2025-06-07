@@ -1,0 +1,26 @@
+./
+  requirements.txt
+  affiliate_matrix.zip
+  README.md
+  discovery/
+    dorking_module.js
+    validation_pipeline.py
+    trigger_system.py
+  autonomous_operation/
+    budget_allocator.py
+    performance_analyzer.py
+    campaign_generator.py
+  config/
+  utils/
+  funnel_replication/
+    competitor_analysis.py
+    template_generator.vue
+    ab_testing.js
+  .local/
+    lib/
+      python3.12/
+        site-packages/
+  foundation/
+    aggregator_connector.py
+    index_schema.sql
+    api_key_manager.py

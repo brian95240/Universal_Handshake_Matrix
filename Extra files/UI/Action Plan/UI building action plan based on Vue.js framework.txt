@@ -1,0 +1,109 @@
+Okay, here is the UI Development Action Plan modified to specifically utilize the Vue.js framework (using modern practices like Composition API and Pinia).
+Project: Affiliate Matrix UI Development (Vue.js Implementation)
+Based On: Refined UI Concept PR Document & Vue Framework Choice
+Current Date: Friday, April 18, 2025
+Phase 0: Foundation & Setup (Vue.js) (Est. Duration: 1-2 Sprints)
+ * Goal: Establish the Vue.js project structure, core layout, styling basics, and development environment.
+ * Tasks:
+   * [ ] Choose & Setup Framework: Select Vue.js (v3+) as the primary framework.
+   * [ ] Project Initialization: Use Create Vue (powered by Vite) or Vue CLI to scaffold the project. Configure TypeScript support. Set up version control (Git), linters (ESLint), formatters (Prettier).
+   * [ ] Core Layout Component: Create main App.vue shell including areas for Header (if any), SideNav, and main Content using <router-view>.
+   * [ ] Routing Setup: Integrate Vue Router for client-side routing of the main sections defined in the SideNav. Define initial routes.
+   * [ ] State Management Setup: Integrate Pinia as the official state management library. Set up initial store structure if needed.
+   * [ ] Styling Foundation:
+     * Configure CSS framework (e.g., Tailwind CSS, UnoCSS, Bootstrap) or scoped CSS/CSS Modules within Vue components.
+     * Define core color palette (from PR) as CSS variables or within the chosen framework's theme configuration.
+     * Apply basic background, text colors, and font styles globally or in App.vue.
+   * [ ] Component Library Setup: Decide on and integrate a Vue 3 compatible component library (e.g., Vuetify 3, PrimeVue, Quasar, Element Plus, Naive UI) or plan for custom components.
+   * [ ] API Mocking Strategy: Set up tools/methods for mocking API responses during development (e.g., MSW, MirageJS, or simple mock services).
+Phase 1: Core Navigation & Static Views (Vue.js) (Est. Duration: 2-3 Sprints)
+ * Goal: Implement the main navigation and the basic structure of core pages using Vue components with static or mocked data. Focus on primary "ongoing usage" sections.
+ * Tasks:
+   * [ ] SideNav Component:
+     * Build the interactive sidebar as a Vue component (SideNav.vue).
+     * Use <router-link> for navigation items with correct order (Dashboard, Program Index, etc.).
+     * Implement active route highlighting using Vue Router's active classes (styled with Primary Accent Color).
+     * Implement Settings link/icon.
+   * [ ] Dashboard Page Component (DashboardView.vue):
+     * Build layout with placeholders for KPI cards and charts using Vue components.
+     * Create reusable KPICard.vue component structure (using <script setup> for Composition API).
+     * Add placeholder buttons.
+   * [ ] Program Index Page Component (ProgramIndexView.vue):
+     * Build layout.
+     * Implement basic DataTable.vue component (using chosen library or custom), potentially using Vue 3 features like <Teleport> if needed for modals/filters.
+     * Display static/mocked program data using v-for directive.
+     * Implement basic client-side search/filter input placeholders (v-model).
+   * [ ] System Page Component (SystemView.vue):
+     * Build layout with placeholders for status indicators, charts, and log viewer components.
+   * [ ] Connections Page Component (ConnectionsView.vue):
+     * Build layout.
+     * Implement ConnectionCard.vue component structure.
+     * Display static/mocked connection data and status indicators using props and status colors.
+     * Implement placeholder + Add Connection button.
+Phase 2: Backend Integration - Core Views (Vue.js) (Est. Duration: 3-4 Sprints)
+ * Goal: Connect the core pages implemented in Phase 1 to live backend API endpoints using Vue's reactivity and Pinia for state management. Requires coordination with backend team on API specifications.
+ * Tasks:
+   * [ ] API Service Layer: Implement composable functions (useApi.js or similar) or Pinia actions for handling API calls (e.g., using Workspace or axios).
+   * [ ] Dashboard API Integration: Use Pinia store or local component state (ref, reactive) to fetch and display KPI data. Connect charts to API data. Implement loading/error states using refs.
+   * [ ] Program Index API Integration:
+     * Fetch program data asynchronously (e.g., within onMounted or a dedicated composable). Store data in Pinia or local state.
+     * Implement server-side pagination, sorting, searching, and filtering logic, triggering API calls based on user input (watch or computed properties).
+     * Display reactive data in the DataTable.vue.
+   * [ ] Connections API Integration:
+     * Fetch connection list and statuses, store in Pinia or reactive state.
+     * Implement the + Add Connection workflow (modal/form component), using Pinia actions or composables to call the creation API endpoint.
+     * Implement API calls for potential actions (Refresh, Edit) within the ConnectionCard.vue or page component.
+   * [ ] System API Integration: Fetch metrics and logs, update reactive state. Use composables for potentially real-time log updates if needed.
+Phase 3: Discovery & Advanced Features Implementation (Vue.js) (Est. Duration: 3-4 Sprints)
+ * Goal: Build the Discovery section and add advanced features to existing pages using Vue components and Composition API logic.
+ * Tasks:
+   * [ ] Discovery Page (DiscoveryView.vue) - Manual Scan:
+     * Implement form for manual dorking query input using v-model.
+     * Connect "Run Scan" button to API call via Pinia action/composable.
+     * Implement display area for scan results (table/list component) reactively bound to fetched data.
+     * Handle loading/progress states reactively (ref).
+   * [ ] Discovery Page - Automation Rules:
+     * Design and implement UI component(s) for configuring automation triggers (potentially within a <template #section> or separate component).
+     * Connect UI to API endpoints for CRUD operations on rules using Pinia/composables.
+   * [ ] Program Index - Advanced Features:
+     * Implement UI logic for column customization/visibility toggle within ProgramIndexView.vue or DataTable.vue.
+     * Build and integrate the advanced filtering panel component, connecting its state to the API request logic.
+     * Implement bulk action UI elements and logic within the page component.
+   * [ ] Budgeting & Performance Page (BudgetingView.vue): Build the basic page structure and component layout (pending backend readiness).
+Phase 4: Graph Visualization Integration (Cytoscape.js in Vue) (Est. Duration: 3-4 Sprints)
+ * Goal: Integrate Cytoscape.js for network visualizations within Vue components. Requires coordination with backend on graph data API endpoints.
+ * Tasks:
+   * [ ] Integrate Cytoscape.js: Add the library to the project.
+   * [ ] GraphView.vue Component: Create a reusable Vue component wrapper around Cytoscape.js. Use Vue's lifecycle hooks (onMounted, onUnmounted) and refs (for the container element) to initialize and destroy the Cytoscape instance properly. Pass data via props.
+   * [ ] Program Index - Network View:
+     * Implement the view toggle (DataTable / "Network View") using conditional rendering (v-if).
+     * Define required graph data structure with backend team.
+     * Fetch graph data from API within ProgramIndexView.vue.
+     * Pass fetched data as props to the GraphView.vue component. Implement styling and interactions within the wrapper component.
+   * [ ] Source Effectiveness Visualization (Dashboard or Discovery):
+     * Define API endpoint for graph data.
+     * Integrate GraphView.vue component, passing appropriate data and configuration props. Style nodes/edges based on performance data passed via props.
+   * [ ] System Event Timeline (Optional): Implement using GraphView.vue (if using Cytoscape for timelines) or integrate a dedicated timeline library (like vis-timeline) within a Vue component. Connect to API data.
+Phase 5: Polish, Responsiveness & Onboarding (Vue.js) (Est. Duration: 2-3 Sprints)
+ * Goal: Refine the UI/UX, ensure consistency, add help elements, and guarantee responsiveness using Vue patterns.
+ * Tasks:
+   * [ ] Styling Pass: Full review using Vue DevTools and browser inspectors. Ensure consistent application of styles within .vue files (scoped CSS, CSS Modules) or global styles.
+   * [ ] Responsiveness: Test and adjust layout/components using CSS media queries and potentially framework-specific responsive utilities. Ensure usability on smaller devices.
+   * [ ] User Feedback: Implement consistent loading indicators (v-if/template), error messages, success notifications (using a Vue Toast library or custom component).
+   * [ ] Help & Onboarding:
+     * Add tooltips (using a Vue tooltip directive/component).
+     * Implement the optional Onboarding component (OnboardingFlow.vue).
+     * Add contextual help components.
+   * [ ] Empty States: Design and implement informative empty states using conditional rendering (v-if/v-else) within components.
+Phase 6: Testing, Optimization & Deployment Prep (Vue.js) (Est. Duration: 2-3 Sprints)
+ * Goal: Ensure application quality, performance, and readiness for deployment using Vue ecosystem testing tools.
+ * Tasks:
+   * [ ] Unit Testing: Write unit tests for Vue components (props, events, computed properties) and composables using Vitest and Vue Testing Library.
+   * [ ] Integration Testing: Write tests for user flows within components or across multiple components interacting via Pinia.
+   * [ ] End-to-End Testing: Implement automated E2E tests using tools like Cypress or Playwright with Vue support.
+   * [ ] Cross-Browser/Device Testing: Manual testing.
+   * [ ] Performance Optimization: Analyze bundle size (using Vite build analysis), optimize component rendering (use v-memo, check reactivity), lazy load routes/components.
+   * [ ] Accessibility (a11y) Audit: Perform checks using browser tools and automated checkers.
+   * [ ] Final Code Review & Cleanup: Refactor using Composition API best practices, remove console logs, ensure consistency.
+   * [ ] Build & Deployment Configuration: Configure Vite/Vue CLI for production builds. Set up deployment scripts/pipelines (e.g., Netlify, Vercel, Docker).
+This Vue-specific plan leverages its strengths like the Composition API, Pinia, and excellent tooling (Vite) while following the same phased approach to deliver the Affiliate Matrix UI.

@@ -1,0 +1,72 @@
+Affiliate Matrix - Synergistic Core Implementation & DX Hardening
+Role: Act as Manus, 1% Vertex AI Genius Implementer & Architect, meticulously building upon the validated Affiliate Matrix foundation (specs, skeletons, initial blueprint). Your focus is maximum developer enablement through implemented core slices, robust patterns, foundational tests, and enhanced DX artifacts.
+Budget: 4216 credits maximum. Monitor usage continuously, provide explicit warnings at 3162 credits (75%) and 3794 credits (90%), and halt immediately if the limit is projected to be exceeded, reporting completed work and remaining budget.
+Context:
+ * Project: Affiliate Matrix
+ * Current State: Foundational artifacts (OpenAPI v3, TS Interfaces/JSON Schemas, Backend Skeletons [FastAPI/Pydantic], Frontend Skeletons [Vue Composables/Pinia], Basic Backend Tests, Integration Blueprint Draft) exist. You will modify and extend these.
+ * Frontend Tech: Vue.js 3 (Composition API, Pinia, Vue Router, Cytoscape.js, Vite, Vitest, Tailwind CSS assumed).
+ * Backend Tech Stack: Python API Layer (FastAPI) interacting with PostgreSQL (MADlib/NetworkX hooks deferred). Includes Redis stubs, HashiCorp Vault stubs.
+ * Overall Objective: Implement core functionality for two key vertical slices (Program Listing/View and Connection Management). Generate corresponding tests. Provide containerization, configuration, and enhanced future-proofing/DX stubs (exceptions, telemetry, flags, delta schemas, base components).
+Execution Strategy: Execute stages. Actively parallelize independent streams where possible. Specifically, after prerequisite contract availability (from initial run), aim to process [Stage 1 + Stage 3 Backend streams] concurrently with [Stage 2 + Stage 5 Frontend/Stub streams], respecting dependencies and the total credit limit.
+Cascading Implementation Stages:
+(Potential Parallel Stream 1: Backend)
+Stage 1: Backend Implementation - Program Service & Router Logic (Est. 1000 credits)
+ * Goal: Implement core program retrieval logic with robust patterns.
+ * Tasks:
+   * Update backend/services/program_service.py (Service Class pattern). Implement get_programs_list logic (pagination, sorting, essential filters; comment extensively for DB query details/index hints). Implement get_program_by_id. Use standard FastAPI exception handling (raising HTTPException for known errors like Not Found).
+   * Update backend/routers/programs.py. Inject service via Depends. Call service methods. Ensure response_model usage.
+   * Inject basic logging (import logging...) and add logger.info/logger.error calls (Basic Telemetry Hook).
+   * Include // INFO: Extend filtering here... or // INFO: Add custom scoring logic here... comments.
+   * Reference config values from config.py (e.g., default page size).
+ * Deliverables: Updated /backend/routers/programs.py, /backend/services/program_service.py.
+Stage 3: Backend Implementation - Connection Service & Router Logic (Est. 900 credits)
+ * Goal: Implement core connection management logic with patterns and hooks.
+ * Tasks:
+   * Update backend/services/connection_service.py (Service Class pattern). Implement CRUD logic (comment for DB interaction). Implement test_connection_logic, trigger_sync_logic (mock external interactions; comment for DB status updates; hint at basic Strategy pattern stub for sync). Use standard FastAPI exception handling.
+   * Update backend/routers/connections.py. Inject service. Call service methods. Handle async 202 Accepted.
+   * Add logging points (Telemetry Hooks). Include // INFO: Add new connection types/strategies here... comments.
+   * Include basic Vault client initialization stub and comments # TODO: Fetch/Store credential from Vault; Consider AES encryption.
+ * Deliverables: Updated /backend/routers/connections.py, /backend/services/connection_service.py.
+(Potential Parallel Stream 2: Frontend & Stubs)
+Stage 2: Frontend Implementation - Program Listing UI (Est. 1000 credits)
+ * Goal: Build the main UI view for program listing, establishing component patterns.
+ * Tasks:
+   * Create reusable /frontend/components/DataTable.vue (props: items, columns, loading; basic template; Tailwind styling; emit sort event).
+   * ADD: Create reusable /frontend/components/BaseCard.vue skeleton (basic card structure with slots for header/content/footer, Tailwind).
+   * Implement /frontend/views/ProgramIndexView.vue (<script setup>). Use programsStore. Call WorkspacePrograms onMounted. Use computed state. Use DataTable.vue. Handle loading/error. Implement basic pagination & filter controls triggering store actions. Verify/update programsStore actions if needed to align with component usage.
+   * Create /frontend/views/ProgramDetailView.vue skeleton.
+   * Add telemetry hook comments (// console.log(...), // TODO: Emit render time). Add feature flag usage comments (// v-if="featureFlags.showAdvancedColumn").
+ * Deliverables: New DataTable.vue, BaseCard.vue, ProgramIndexView.vue, ProgramDetailView.vue; Potentially updated stores/programs.ts.
+Stage 5: Foundational Stubs, Containerization & DX (Est. 700 credits)
+ * Goal: Provide setup for containerization, config, and future-proofing features with enhanced Developer Experience (DX).
+ * Tasks:
+   * Containerization: Generate backend/Dockerfile, frontend/Dockerfile, docker-compose.yml (stub linking services).
+   * Configuration: Generate backend/config.py (Pydantic BaseSettings). ADD: Generate corresponding backend/.env.example file.
+   * Future-Proofing Stubs:
+     * Add DeltaChange<T> TS Interface/JSON Schema stub.
+     * Add FeatureFlagConfig schema stub (TS/JSON Schema).
+     * Add basic FastAPI Feature Flag middleware stub (backend/middleware/feature_flags.py).
+     * Update openapi.yaml stubs for delta endpoints and feature flags (header/query param).
+     * Add skeleton routes/service methods (no logic) for delta endpoints.
+   * DX Enhancements:
+     * ADD: Generate basic custom exception classes (backend/core/exceptions.py) (e.g., ItemNotFoundError, ValidationErr) and a simple FastAPI exception handler stub (backend/core/error_handlers.py) demonstrating their usage.
+     * ADD: Generate basic /frontend/components/GraphView.vue skeleton (wrapper, props, lifecycle hooks for Cytoscape init/destroy comments only).
+     * ADD: Generate brief docs/integration/IMPLEMENTATION_NOTES.md summarizing the implemented slices and linking to the generated tests (supplementing the original blueprint).
+ * Deliverables: New Dockerfiles, docker-compose.yml, config.py, .env.example, exceptions.py, error_handlers.py, feature_flags.py, GraphView.vue skeleton, IMPLEMENTATION_NOTES.md; Updated contract files, OpenAPI spec, relevant backend routers/services with delta skeletons.
+(Sequential Stage - After Implementation)
+Stage 4: Testing Implementation (Est. 600 credits)
+ * Goal: Generate concrete tests validating implemented logic & API contracts.
+ * Input: Stage 1, 2, 3 & 5 code outputs.
+ * Tasks:
+   * Backend Tests (pytest): Generate tests for implemented logic in routers/services. Focus on API contract validation (status codes, basic response schema using TestClient) and implemented service logic (mocking DB/service dependencies). Test basic filtering and key error paths using custom exceptions if applicable.
+   * Frontend Tests (Vitest): Generate tests for ProgramIndexView.vue and DataTable.vue. Focus on mounting with mocked Pinia store/props, verifying rendering, asserting store actions are called, checking loading/error states.
+ * Deliverables: Updated/New /tests/backend/test_programs_api.py, /tests/backend/test_connections_api.py; New /tests/frontend/ProgramIndexView.spec.ts, /tests/frontend/DataTable.spec.ts.
+Cross-Cutting Instructions:
+ * Build on Skeletons: Explicitly modify/enhance artifacts from the initial run.
+ * Reusable Patterns: Implement consistently (Service Class, error handling via custom exceptions/handlers, Pinia actions). Comment on patterns.
+ * Configuration: Use the generated config.py/.env.example structure.
+ * Extensibility & Telemetry: Add specific comments/stubs as requested.
+ * Credit Watchdog: Provide warnings at 3162 (75%) and 3794 (90%) credits. Halt immediately if ≥ 4216 credits are projected. Report status.
+Launch Command:
+Execute these implementation and foundation-hardening stages, parallelizing streams where indicated. Build directly upon the existing project artifacts. Implement the core logic and UI for the specified vertical slices using robust patterns. Generate corresponding tests and essential stubs/hooks/DX artifacts for future scalability and developer experience. Adhere strictly to the 4216 credit limit and prioritization. Deliver the enhanced codebase and artifacts.
+This v2.3 prompt represents the apex refinement based on all previous analysis. It maintains a realistic implementation scope focused on core slices (4100 credits estimated), maximizes value by adding crucial DX and future-proofing stubs inspired by competitors, explicitly guides parallel execution, and stays within budget. It sets the stage perfectly for human developers.

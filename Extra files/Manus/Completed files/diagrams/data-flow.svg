@@ -1,0 +1,72 @@
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Frontend Cluster -->
+  <rect x="50" y="50" width="300" height="300" fill="#f0f0f0" stroke="#cccccc" stroke-width="2" rx="10" ry="10" />
+  <text x="200" y="80" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Frontend (Vue.js)</text>
+  
+  <!-- Frontend Components -->
+  <rect x="100" y="100" width="200" height="50" fill="#d0e0ff" stroke="#a0a0a0" stroke-width="1" rx="5" ry="5" />
+  <text x="200" y="130" font-family="Arial" font-size="14" text-anchor="middle">Vue Components</text>
+  
+  <rect x="100" y="175" width="200" height="50" fill="#d0e0ff" stroke="#a0a0a0" stroke-width="1" rx="5" ry="5" />
+  <text x="200" y="205" font-family="Arial" font-size="14" text-anchor="middle">Vue Composables</text>
+  
+  <rect x="100" y="250" width="200" height="50" fill="#d0e0ff" stroke="#a0a0a0" stroke-width="1" rx="5" ry="5" />
+  <text x="200" y="280" font-family="Arial" font-size="14" text-anchor="middle">Pinia Stores</text>
+  
+  <!-- Frontend Arrows -->
+  <path d="M200 150 L200 175" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="220" y="165" font-family="Arial" font-size="10">User Actions</text>
+  
+  <path d="M200 225 L200 250" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="220" y="240" font-family="Arial" font-size="10">Update State</text>
+  
+  <path d="M150 250 C120 220, 120 130, 150 150" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="90" y="200" font-family="Arial" font-size="10">Reactive Updates</text>
+  
+  <!-- Backend Cluster -->
+  <rect x="450" y="50" width="300" height="300" fill="#f0f0f0" stroke="#cccccc" stroke-width="2" rx="10" ry="10" />
+  <text x="600" y="80" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Backend (FastAPI)</text>
+  
+  <!-- Backend Components -->
+  <rect x="500" y="100" width="200" height="50" fill="#d0e0ff" stroke="#a0a0a0" stroke-width="1" rx="5" ry="5" />
+  <text x="600" y="130" font-family="Arial" font-size="14" text-anchor="middle">API Endpoints</text>
+  
+  <rect x="500" y="175" width="200" height="50" fill="#d0e0ff" stroke="#a0a0a0" stroke-width="1" rx="5" ry="5" />
+  <text x="600" y="205" font-family="Arial" font-size="14" text-anchor="middle">Pydantic Models</text>
+  
+  <rect x="500" y="250" width="200" height="50" fill="#d0e0ff" stroke="#a0a0a0" stroke-width="1" rx="5" ry="5" />
+  <text x="600" y="280" font-family="Arial" font-size="14" text-anchor="middle">Business Logic</text>
+  
+  <rect x="500" y="325" width="200" height="50" fill="#d0e0ff" stroke="#a0a0a0" stroke-width="1" rx="5" ry="5" />
+  <text x="600" y="355" font-family="Arial" font-size="14" text-anchor="middle">Database</text>
+  
+  <!-- Backend Arrows -->
+  <path d="M600 150 L600 175" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="620" y="165" font-family="Arial" font-size="10">Validate Data</text>
+  
+  <path d="M600 225 L600 250" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="620" y="240" font-family="Arial" font-size="10">Process Data</text>
+  
+  <path d="M600 300 L600 325" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="620" y="315" font-family="Arial" font-size="10">CRUD Operations</text>
+  
+  <path d="M550 325 C520 300, 520 275, 550 300" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="490" y="300" font-family="Arial" font-size="10">Return Data</text>
+  
+  <path d="M550 250 C520 225, 520 150, 550 175" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="490" y="200" font-family="Arial" font-size="10">Response Data</text>
+  
+  <!-- Cross-Cluster Arrows -->
+  <path d="M300 275 L500 125" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="400" y="180" font-family="Arial" font-size="10">HTTP Requests</text>
+  
+  <path d="M500 150 L300 250" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="400" y="220" font-family="Arial" font-size="10">JSON Responses</text>
+  
+  <!-- Arrow Definitions -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666666" />
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,63 @@
+🔥 APEX REFINED MASTER PROMPT: Affiliate Matrix - API Bridge & Core Skeletons 🔥
+Role: Act as Manus, a 1% Vertex AI Architect & Lead Developer, focused on maximizing development enablement for the "Affiliate Matrix" project within strict resource constraints.
+Budget: 4900 credits maximum. You MUST actively monitor usage, prioritize stages, and halt immediately if the limit is projected to be exceeded, reporting completed work.
+Core Strategy: Your primary goal is NOT full implementation. It is to define the critical API contract and generate high-quality foundational code skeletons and essential documentation artifacts that bridge the Vue.js frontend and the backend system, enabling efficient parallel development by human engineers.
+Context:
+ * Project: Affiliate Matrix
+ * Overall Goal: Develop an automated affiliate marketing system.
+ * Frontend Tech: Vue.js 3 (Composition API, Pinia, Vue Router, Cytoscape.js, Vite, Vitest).
+ * Backend Tech Stack Assumption: Python API Layer (using FastAPI) interacting with PostgreSQL (with potential MADlib/NetworkX hooks). State clearly if your analysis of the plans suggests a conflict with this assumption.
+ * Inputs: Two documents providing project context (assume access or I will provide):
+   * Backend_Action_Plan.md (10 backend steps)
+   * UI_Action_Plan_Vue.md (6 UI phases)
+ * Output Prioritization: Strict adherence to stage order. Complete deliverables for earlier stages before proceeding. Specs > Skeletons > Docs/Tests.
+Cascading Enablement Stages:
+Stage 1: Foundational Contracts & Data Structures (Est. 1400 credits)
+ * Goal: Define the precise data shapes and API surface.
+ * Tasks:
+   * Analyze both action plans to map UI needs to backend capabilities for UI Phases 1-4 / Backend Steps 1-8. Identify key interaction points.
+   * Define core data structures (Program, Connection, ConnectionStatus, DiscoveryResult, SystemMetrics, ApiCredentials, etc.) as both TypeScript Interfaces AND JSON Schemas.
+   * Design the RESTful API endpoints required for core functionality (Connections CRUD, Index Querying/Filtering, Discovery Triggering/Results View, System Status Fetching). Generate an OpenAPI v3 specification (YAML or JSON) documenting these endpoints (paths, methods, parameters, request/response bodies referencing data structures, status codes). Include basic security scheme placeholders (e.g., Bearer token).
+ * Deliverables: Markdown file containing TypeScript Interfaces & JSON Schemas; OpenAPI v3 Specification file (openapi.yaml or openapi.json).
+Stage 2: Backend API Skeleton Generation (Est. 1500 credits)
+ * Goal: Create the Python backend starting points based on Stage 1 contracts.
+ * Tasks:
+   * Generate Python FastAPI route handler function signatures for each endpoint defined in the OpenAPI spec. Use type hints based on the defined data structures.
+   * Structure these into logical route files (e.g., routers/connections.py, routers/programs.py).
+   * Include placeholder comments within functions indicating where backend logic (DB queries, calls to MADlib/NetworkX functions, etc.) should occur and referencing relevant Backend Action Plan steps.
+   * Generate basic Pydantic models corresponding to the JSON Schemas/TS Interfaces for request/response validation.
+   * Include comments indicating where standard FastAPI dependencies (e.g., for DB sessions, security) should be injected.
+ * Deliverables: Set of Python files (*.py) containing the API route skeletons and Pydantic models, organized in a logical directory structure.
+Stage 3: Frontend Service Skeleton Generation (Est. 1000 credits)
+ * Goal: Create the Vue.js frontend starting points for interacting with the API based on Stage 1 contracts.
+ * Tasks:
+   * Generate Vue 3 Composition API composable functions (e.g., useConnections.ts, usePrograms.ts, useDiscovery.ts) containing function signatures for making API calls defined in the OpenAPI spec.
+   * Use Workspace or axios placeholders within these functions. Include basic structure for handling loading states (ref), errors (try/catch), and storing responses (potentially integrating with placeholder Pinia store actions).
+   * Use TypeScript and include types based on the defined data structures (TS Interfaces).
+   * Generate basic Pinia store structures (stores/connections.ts, stores/programs.ts) outlining state properties and action signatures corresponding to the composable functions.
+ * Deliverables: Set of TypeScript files (*.ts) containing the Vue composable and Pinia store skeletons, organized logically.
+Stage 4: Test Cases & Integration Blueprint (Est. 1000 credits)
+ * Goal: Provide essential testing guidance and integration documentation based on the generated artifacts.
+ * Tasks:
+   * For each API endpoint defined in Stage 1, generate a list of key test case descriptions (Markdown format). Cover:
+     * Input validation (required fields, data types).
+     * Happy path (successful creation/retrieval/update/deletion).
+     * Key error conditions (e.g., not found, unauthorized, bad request).
+   * Generate basic integration notes (Markdown format) explaining how key frontend composable functions (from Stage 3) map to and should interact with specific backend API endpoints (from Stage 2), referencing the data structures (from Stage 1).
+   * Generate a simple data flow diagram (Mermaid syntax in Markdown) illustrating the primary interactions defined (e.g., UI -> usePrograms -> API -> programs router -> DB).
+ * Deliverables: Markdown file (TESTING_GUIDELINES.md) containing test case descriptions; Markdown file (INTEGRATION_BLUEPRINT.md) containing integration notes and Mermaid diagram.
+Cross-Cutting Instructions:
+ * Credit Watchdog: Halt immediately if ≥ 4900 credits are projected for the current stage. Report completed deliverables and remaining budget.
+ * Focus on Skeletons: Emphasize generating well-structured, commented skeletons and specifications, not full implementations. Include // TODO: comments where appropriate.
+ * Clarity & Consistency: Use clear, consistent naming conventions across all generated artifacts.
+ * Extensibility Hints: Where obvious, add comments suggesting potential extension points (e.g., // TODO: Add filtering options here).
+Launch Command:
+Execute these stages sequentially based on the provided action plans, prioritizing accurate specification and robust skeleton generation. Adhere strictly to the 4900 credit limit and prioritization. Deliver the specified artifacts for each completed stage. Your goal is maximum enablement for the human development team.
+Why this is the Apex Refinement (for this task & budget):
+ * Realistic Scope: Focuses entirely on specs, skeletons, and essential documentation/testing outlines – tasks well-suited to current AI within the budget.
+ * Prioritization Perfected: Starts with the absolute foundation (Contracts/API Spec) and builds logically outwards with skeletons.
+ * Enhanced Deliverables: Adds specific formats (OpenAPI, TS Interfaces + JSON Schema), backend models (Pydantic), explicit Pinia structures, test case descriptions, and basic integration docs/diagrams, significantly increasing immediate value over the previous prompt.
+ * Structured Staging: Breaks the task into clearer, manageable stages for the AI.
+ * Clearer Instructions: More explicit guidance on tech stack, output formats, and focus.
+ * Budget Adherence: Realistic credit estimates per stage for these specific deliverables, totaling 4900.
+This refined prompt maximizes the chance of getting highly valuable, usable artifacts within the budget, directly accelerating the most critical parts of the development process, making it a superior strategy compared to overly ambitious implementation attempts.

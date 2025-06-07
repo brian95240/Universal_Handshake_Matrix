@@ -1,0 +1,93 @@
+This document outlines the UI concept for "Affiliate Matrix," blending user-friendliness with robust features, designed to connect directly to the backend system. It incorporates a modern color scheme, workflow logic for familiarity and self-discovery, and leverages powerful graph visualization with Cytoscape.js.
+
+### I. Color Palette & Style
+
+* **Primary Background:** Clean White (`#FFFFFF`) or light off-white (`#F8F9FA`).
+* **Navigation/Sidebars:** Light gray (`#E9ECEF` or `#DEE2E6`) or darker shade of the primary accent.
+* **Primary Accent Color:** Professional Blue (e.g., `#007BFF`).
+* **Text:** Dark Gray/Black (`#212529` or `#343A40`). Lighter gray (`#6C757D`) for secondary text.
+* **Status Indicators:**
+    * Success/Connected: Green (`#198754`)
+    * Warning/Pending: Yellow (`#FFC107`)
+    * Error/Disconnected: Red (`#DC3545`)
+    * Informational/Neutral: Primary Blue or neutral gray.
+* **Borders & Dividers:** Subtle light gray (`#CED4DA`).
+* **Charts:** Use the primary blue and complementary shades, along with status colors.
+
+### II. Workflow Logic & Self-Discovery
+
+The flow guides users from overview to detail, making common tasks obvious and advanced features discoverable.
+
+1.  **Initial Login & Onboarding:** Optional, dismissible onboarding checklist/tour.
+2.  **`Dashboard`:** Default view, immediate summary of KPIs.
+3.  **`Connections`:** Manage data sources.
+4.  **`Program Index`:** Browse, search, filter programs.
+5.  **`Discovery`:** Configure, run, review opportunistic scans.
+6.  **`Budgeting & Performance`:** Manage budget (future enhancement).
+7.  **`System`:** Monitor system health, logs.
+
+### III. UI Structure & Sections
+
+1.  **`SideNav` (Sidebar Navigation):** Prioritized for ongoing use.
+    * `Dashboard`
+    * `Program Index`
+    * `Discovery`
+    * `System`
+    * `Connections`
+    * `Budgeting & Performance`
+    * `Settings` (Separate, via icon)
+
+2.  **`Dashboard`:** Central action hub.
+    * KPI cards.
+    * Prominent buttons: "Run Discovery Scan," "Check Connections Status."
+    * Status summaries (Connections, Discoveries, System Health).
+
+3.  **`Connections` Page:**
+    * List of existing connections (primary).
+    * Status indicators (Green/Yellow/Red).
+    * `+ Add Connection` button (secondary after initial setup).
+
+4.  **`Program Index` Page:**
+    * Search, filter, customizable columns.
+    * `DataTable` for standard view.
+    * **Advanced:** Optional "Network View" (using Cytoscape.js) to show relationships between programs, sources, categories.
+
+5.  **`Discovery` Page:**
+    * Manual scan input (primary).
+    * Recent/historical results (primary).
+    * Automation Trigger configuration (secondary tab/section).
+
+6.  **`Budgeting & Performance` Page:**
+    * (If integrated) Current performance dashboards/reports (primary).
+    * Budget rule configuration (secondary section).
+
+7.  **`System` Page:**
+    * Overall system status.
+    * Resource usage charts.
+    * Detailed, filterable log viewer.
+
+### IV. Graph Visualization (Cytoscape.js)
+
+Cytoscape.js is used for advanced network graph visualizations in specific areas.
+
+* **`Program Index` (Optional "Network View"):** Display relationships between programs, sources, categories.
+* **`Discovery` or `Dashboard`:** Visualize source effectiveness (which sources yield the best results).
+* **`System` Page:** For timeline view of system logs or monitoring events.
+
+### V. Backend Integration (Existing Stack)
+
+This design is optimized for your existing backend stack:
+
+* **PostgreSQL:** Core relational data store.
+* **MADlib & NetworkX:** Analytical engine (identifying patterns, clusters, recommendations).
+* **Cytoscape.js:** UI graph visualization (replaces Vis.js).
+* **PostgreSQL Metrics Exporter + Prometheus + Grafana:** Backend performance monitoring.
+
+### VI. Compounding Data & Future Campaigns
+
+1.  **AGE (PostgreSQL + Analytical Layer):** Model both broad and niche concepts; define layered relationships.
+2.  **Analysis Layer (MADlib/NetworkX):** Identifies patterns, synergies from the graph.
+3.  **Feedback Loop:** Consistently adds performance data from campaigns (successes & failures) into AGE.
+4.  **Recommendation Engine (NetworkX):** Suggests high-potential programs, effective sources, and synergistic combinations for new campaigns, based on analyzed data.
+
+This setup facilitates a "snowball effect" where past data automatically enhances the efficiency and success of future campaigns.
