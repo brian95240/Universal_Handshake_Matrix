@@ -121,5 +121,11 @@ python -m foundation.api_key_manager --store
 ## Support
 For issues and support, please create an issue in the repository.
 
-## License
-MIT License
+## 📄 License
+
+This project is available under dual licensing:
+
+- **GPL v3.0**: For open source projects and personal use (see `LICENSE-GPL`)
+- **Commercial License**: For proprietary applications and commercial use (see `LICENSE-COMMERCIAL`)
+
+For commercial licensing inquiries, please contact: brian95240@users.noreply.github.com
